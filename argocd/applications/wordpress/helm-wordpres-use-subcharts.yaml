@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-example
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: helm-example
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: 'subcharts/wordpress'
+    repoURL: 'https://github.com/lefterisALEX/k8s-examples.git'
+    targetRevision: 12.2.3
+    chart: wordpress
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
