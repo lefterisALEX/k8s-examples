@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-deployment
+  namespace: argocd
+spec:
+  destination:
+    namespace: sample-deployment
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: yaml/sample-deploy
+    repoURL: https://github.com/lefterisALEX/k8s-examples.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+
