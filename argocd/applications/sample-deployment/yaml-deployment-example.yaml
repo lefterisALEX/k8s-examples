@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: yaml/sample-deploy
+    path: yaml/deployment
     repoURL: https://github.com/lefterisALEX/k8s-examples.git
     targetRevision: HEAD
   syncPolicy:

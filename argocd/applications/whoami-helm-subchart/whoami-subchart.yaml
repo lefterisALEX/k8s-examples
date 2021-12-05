@@ -22,13 +22,12 @@
 #     syncOptions:
 #       - CreateNamespace=true
 
----
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
  name: whoami-subchart
- namespace: -gitops
+ namespace: argocd
 spec:
  destination:
    namespace: test
@@ -37,16 +36,7 @@ spec:
  source:
    path: subcharts/whoami/
    repoURL: https://github.com/lefterisALEX/k8s-examples.git
-   targetRevision: main
- sync:
-   comparedTo:
-     destination:
-       namespace: test
-       server: https://kubernetes.default.svc
-     source:
-       path: subcharts/whoami/
-       repoURL: https://github.com/lefterisALEX/k8s-examples.git
-       targetRevision: master
+   targetRevision: HEAD
  syncPolicy:
    automated:
      prune: true
