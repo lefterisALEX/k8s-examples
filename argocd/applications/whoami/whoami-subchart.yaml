@@ -5,17 +5,16 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    name: ''
     namespace: whoami-example
     server: 'https://kubernetes.default.svc'
+  project: default
   source:
     path: 'subcharts/whoami'
     repoURL: 'https://github.com/lefterisALEX/k8s-examples.git'
     targetRevision: HEAD
-    helm:
-      valueFiles:
-      - values.yaml
-  project: default
+    # helm:
+    #   valueFiles:
+    #   - values.yaml
   syncPolicy:
     automated:
       prune: false
